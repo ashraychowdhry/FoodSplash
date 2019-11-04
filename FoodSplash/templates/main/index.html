@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+
+    <title>{% block title %} {% endblock %} | FoodSplash</title>
+
+
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Lato:300";
+
+        /* Neo Material styles
+        *{ border-radius:8px; !important;  box-shadow: none !important;}
+        .card,.card-panel{border-radius:10px; !important; }
+        */
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            font-family: 'Lato', sans-serif;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9231171504263853",
+            enable_page_level_ads: true
+        });
+    </script>
+
+
+<body>
+
+<header>
+    <!-- navs -->
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper green lighten-1">
+                <a href="/" class="brand-logo center">
+                    <img alt="LOGO" class="responsive-img circle"
+                         src="{% static 'images/logo.png' %}" width="60px"/></a>
+                <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="/" class="white-text"><b>FoodSplash</b></a></li>
+                    <li><a href="#about" class="white-text">About</a></li>
+                    <li><a href="#policies" class="white-text">Policies</a></li>
+                    <li><a href="#partners" class="white-text">Partners</a></li>
+                    <li><a href="#contact" class="white-text">Contact Us</a></li>
+                    <li><a href="#team" class="white-text">Team</a></li>
+                    <li><a href="#signup" class="white-text">Sign Up</a></li>
+                </ul>
+
+                <ul class="right hide-on-med-and-down">
+                    {% if request.user.is_authenticated %}
+                        <li><a class="grey-text text-lighten-3" href="{% url 'main:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="grey-text text-lighten-3" href="{% url 'main:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+
+    <ul class="sidenav" id="mobile">
+        <li><a href="/" class="white-text green"><b>FoodSplash</b></a></li>
+        <li><a href="#about" class="black-text">About</a></li>
+        <li><a href="#policies" class="black-text">Policies</a></li>
+        <li><a href="#partners" class="black-text">Partners</a></li>
+        <li><a href="#contact" class="black-text">Contact Us</a></li>
+        <li><a href="#team" class="black-text">Team</a></li>
+        <li><a href="{% url 'main:signup' %}" class="btn green lighten-1">Sign Up</a></li>
+
+        {% if request.user.is_authenticated %}
+            <li><a class="btn red lighten-1" href="{% url 'main:logout' %}">Logout</a></li>
+        {% else %}
+            <li><a class="btn" href="{% url 'main:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+
+</header>
+
+
+<main>
+
+    <!-- About -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/SplashCoverPhoto.png' %}"></div>
+    </div>
+
+    <section id="about" class="section scrollspy white">
+        <div class="row container">
+            <h2 class="header">FoodSplash</h2>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                FoodSplash is a easy-to-use platform tailored to making the process of donation as seamless as possible,
+                while also reducing the amount of food wastage in the community. That’s why your convenience is our
+                priority.
+                <br><br>
+                It's Simple, we collect your donations at sites close to you. Then, we handle the transport and approval
+                of your donations to our various non-profit organization partners, and award you points.
+                Finally, we let you know where your donation went and its impact.
+                <br>
+            <div class="center">
+                <a class="btn-flat waves-light" href="#signup">Try it now</a>
+            </div>
+
+
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Policy -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/poor.jpg' %}"></div>
+    </div>
+
+    <section id="policies" class="section scrollspy white">
+        <div class="row container">
+            <h2 class="header">Our Policies</h2>
+
+            <h4>Donation</h4>
+            <h6>Making a food donation has never been easier and more efficient.</h6>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                At the drop site, unless otherwise stated in the event description, standard procedure is for your
+                donation to be associated with an ID that the organization will scan or enter to verify your donation
+                once they have confirmed all guidelines have been followed. After leaving your donation at the
+                designated location, be sure to consult with personal at the event in order to confirm your donation,
+                and be sure to take a photo of the approval page as a receipt of your donation.
+            </p>
+
+            <br>
+            <ul class="browser-default flow-text">
+                If it is unclear or you are unsure of where to start with donations, here are some general guidelines of
+                items that are typically universally accepted:
+                <li>Non-perishables/canned items</li>
+                <li>Occasionally, food is labeled for safety of general donation, which is a good starting point</li>
+                <li>Soup Kitchens and other immediate donors tend to accept cooked meals or leftovers (assuming general
+                    hygienic rules)
+                </li>
+                All donations can be easily verified through our platform should the the organization request it, and
+                upon organization approval, points will be granted to your account within 24 hours.
+            </ul>
+            <br>
+
+
+            <h4>Points</h4>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                As incentive for those who donate, we have a points system that rewards everyone who takes part in
+                FoodSplash. For every donation that you make, 10 SplashPoints are earned. Top donators on the
+                leaderboard can redeem these points at the end of the month in exchange for prizes!
+            </p>
+            <br>
+
+
+            <h4>User Statement</h4>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                While FoodSplash is the people's platform to connect you with local organizations, it is the
+                user/contributor’s responsibility to assume all travel/transportation, packaging, and other personal
+                logistics duties unless otherwise stated or provided by the organization.
+            </p>
+            <br>
+
+
+            <h4>Privacy</h4>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                In addition to our user’s convenience, their security and privacy is one of our highest priorities.
+                That’s why all information entered into our platform is strictly confidential, and will never be shared
+                with any outside organizations unless consented. As we develop, cybersecurity is our top concern, and we
+                will be sure to inform all users of any updates as we move along to make the process as convenient as we
+                can.
+            </p>
+            <br>
+
+
+            <h4>Legal</h4>
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                The Bill Emerson Good Samaritan Food Donation Act protects you, the donor, and the recipient against
+                liability, except for gross negligence and/or intentional misconduct. What this means is that there are
+                laws the protect you from civil and criminal liability if your donation causes harm to its recipient.
+            </p>
+            <br><br>
+
+        </div>
+    </section>
+
+
+    <!-- Partners -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/helpinghands.jpg' %}"></div>
+    </div>
+
+    <section id="partners" class="section scrollspy white">
+        <div class="row container">
+            <h2 class="header">Our Partners</h2>
+            <h5 class="center">Your donations will be distributed to -and verified by- these partners.</h5> <br>
+
+            <div class="center">
+                <img src="{% static 'images/partners/cfbnj.png' %}" class="responsive-img" onclick="window.location.href='http://cfbnj.org/'">
+                <img src="{% static 'images/partners/arminarm.png' %}" class="responsive-img" onclick="window.location.href='https://arminarm.org/'">
+                <img src="{% static 'images/partners/somerset.png' %}" class="responsive-img" onclick="window.location.href='http://www.somersetfoodbank.org/'"> <br>
+                <img src="{% static 'images/partners/trentonsoup.jpg' %}" class="responsive-img" onclick="window.location.href='http://www.trentonsoupkitchen.org/'">
+                <img src="{% static 'images/partners/catholic.png' %}" class="responsive-img" onclick="window.location.href='https://www.catholiccharitiestrenton.org/'">
+                <img src="{% static 'images/partners/a2z.png' %}" class="responsive-img" onclick="window.location.href='http://a2zmentoring.org/'">
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Contact -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/cans.jpg' %}"></div>
+    </div>
+
+    <section id="contact" class="section scrollspy white">
+        <div class="row container">
+            <h2 class="header">Contact Us</h2>
+
+            <p class="grey-text text-darken-3 lighten-3 flow-text">
+                Feel free to contact us at any time! Our team will get in touch with you as soon as possible. <br><br>
+                If you need support please give us all details that may help resolve your issue! The more detailed you
+                are, the better support we can give, Thanks!
+                <br><br>
+                If you are an organization interested in partnering, please reach out! As an organization, you can gain
+                access to more goods from more people than ever possible!<br><br>
+                <br>
+
+            <div class="center">
+                <a href="https://www.facebook.com/SplashofFood/" target="_blank">
+                    <i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+
+
+                <a href="mailto:foodsplashnj@gmail.com">
+                    <i class="fa fa-envelope-o fa-4x" aria-hidden="true"></i>
+                </a>
+            </div>
+            </p>
+
+
+        </div>
+    </section>
+
+
+    <!-- Team -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/rice.png' %}"></div>
+    </div>
+
+    <section id="team" class="section scrollspy white">
+        <div class="row container">
+            <h2 class="header">Team FoodSplash</h2>
+            <!-- -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="{% static 'images/directors/ashray.jpg' %}" class="circle responsive-img">
+                        </div>
+                        <div class="col s9">
+                            <span class="card-title orange-text">Ashray Chowdhry<br><i><small>CEO</small></i></span>
+                            <p class="flow-text">Ashray Chowdhry is a senior at West Windsor - Plainsboro High School
+                                South, and the CEO of FoodSplash. Ashray is the Build Captain of his school's Science
+                                Olympiad team, and is involved in a variety of activities ranging from founding the WW-P
+                                MIT LaunchX Club for Entrepreneurship or recreational and competitive tennis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="{% static 'images/directors/madhava.jpg' %}" class="circle responsive-img">
+                        </div>
+                        <div class="col s9">
+                            <span class="card-title orange-text">Madhava Rakshit<br><i><small>CMO</small></i></span>
+                            <p class="flow-text">
+                                Madhava is a senior at West Windsor - Plainsboro High School South, and the CMO of
+                                FoodSplash. Madhava is a photographing enthusiast who shares his interest of photography
+                                as an officer at his school’s photography club. He is also an avid table tennis player
+                                who competes in local leagues and tournaments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="{% static 'images/directors/nalin.jpg' %}" class="circle responsive-img">
+                        </div>
+                        <div class="col s9">
+                            <span class="card-title orange-text">Nalin Dwivedi<br><i><small>CFO</small></i></span>
+                            <p class="flow-text">Nalin Dwivedi is a senior at West Windsor - Plainsboro High School
+                                South,
+                                and the CFO of FoodSplash. Nalin is an avid swimmer and business enthusiast. Running
+                                several
+                                entrepreneurship and finance organizations in district and county, he hones his skills
+                                through start-up practice. He plans to investigate the intersection between finance and
+                                technology, and study statistical science and economics in college.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="{% static 'images/directors/vishal.png' %}" class="circle responsive-img">
+                        </div>
+                        <div class="col s9">
+                            <span class="card-title orange-text">Vishal Shankar<br><i><small>COO</small></i></span>
+                            <p class="flow-text">Vishal Shankar is a senior at West-Windsor Plainsboro High School
+                                South, and is the COO of FoodSplash. Vishal is a passionate piano player and also plays
+                                competitively on his school’s varsity tennis team. He refines his entrepreneurial skills
+                                through his involvement in school activities and is the co-founder of his school’s
+                                business club and researches for the Waksman Institute. After graduating high school, he
+                                hopes to pursue a hybrid between biochemistry and technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s3">
+                            <img src="{% static 'images/directors/mayaank.jpg' %}" class="circle responsive-img">
+                        </div>
+                        <div class="col s9">
+                            <span class="card-title orange-text">Mayaank Vadlamani<br><i><small>CTO</small></i></span>
+                            <p class="flow-text">
+                                Mayaank is the CTO of FoodSPlash, with deep interests in biology, robotics, machine
+                                learning and web, UI & UX design.
+                              </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Signup -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/donatebox.png' %}"></div>
+    </div>
+
+    <section id="signup" class="section scrollspy white">
+        <div class="row container center">
+            <h2 class="header">Join Us - Give to your community</h2>
+            <br>
+            <div class="row center">
+                <div class="col s4"></div>
+                <a class="btn btn-large green lighten-1 z-depth-5 col s4" href="{% url 'main:signup' %}">Sign up!</a>
+            </div>
+            <div class="row center">
+                <div class="col s4"></div>
+                <a class="btn btn-large z-depth-5 col s4" href="{% url 'main:login' %}">Login</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ads -->
+    <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'images/parallax/serve.jpg' %}"></div>
+    </div>
+
+    <section id="ads" class="section white">
+        ads
+    </section>
+
+
+</main>
+
+
+<footer class="page-footer green lighten-1">
+    <div class="container">
+        <div class="row">
+            <div class="col s4">
+                <h5 class="white-text">FoodSplash</h5>
+                <p class="white-text text-lighten-4">
+                    FoodSplash
+                </p>
+            </div>
+            <div class="col s4">
+                <h5 class="white-text">Links</h5>
+                <ul>
+
+                    {% if request.user.is_authenticated %}
+                        <li><a class="white-text text-lighten-3" href="{% url 'main:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="white-text text-lighten-3" href="{% url 'main:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="col s4">
+                <h5 class="white-text">Resources</h5>
+                <ul>
+                    <!--<li><a class="white-text" href="#">{Link}</a></li>-->
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container white-text">
+            © 2018 FoodSplash
+            <div class="right">
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+{% if toast %}
+    <script>
+        M.toast({html: "{{ toast.msg }}", classes: "{{ toast.cls }}"});
+    </script>
+{% endif %}
+
+<script>
+    $(document).ready(function () {
+        $('.parallax').parallax();
+        $('.sidenav').sidenav();
+        $('.scrollspy').scrollSpy();
+    });
+</script>
+
+</body>
+</html>

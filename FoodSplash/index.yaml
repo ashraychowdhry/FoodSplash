@@ -1,0 +1,51 @@
+indexes:
+
+- kind: djangae_gaedatastoreuser
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: djangae_group
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: auth_user
+  properties:
+  - name: username
+  - name: __key__
+    direction: desc
+
+- kind: auth_group
+  properties:
+  - name: name
+  - name: __key__
+    direction: desc
+
+- kind: django_admin_log
+  properties:
+  - name: user_id
+  - name: action_time
+    direction: desc
+
+###
+
+- kind: main_address
+  properties:
+    - name: __key__
+      direction: desc
+
+- kind: main_donation
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: main_fsuser
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: main_promise
+  properties:
+  - name: __key__
+    direction: desc

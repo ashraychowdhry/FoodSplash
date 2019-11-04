@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}404{% endblock %}
+
+{% block content %}
+    <h3>&#175;&#92;&#95;&#40;&#12484;&#41;&#95;&#47;&#175;</h3>
+    <h4><b>404</b>: That's an error!</h4> <br>
+    <p class="flow-text">
+
+        You tried to go to <span id="url" class="red-text">{{ request.get_full_path }}</span>
+        but that doesn't exist on this site. <br>
+        If you think this page is supposed to exist, contact the directors of technology. <br><br>
+
+        <a href="/">Home</a>
+    </p>
+
+    <br><br>
+{% endblock %}

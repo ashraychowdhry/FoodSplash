@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}"/>
+
+    <title>{% block title %} {% endblock %} | FoodSplash</title>
+
+
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Lato:300";
+
+        /* Neo Material styles
+        *{ border-radius:8px; !important;  box-shadow: none !important;}
+        .card,.card-panel{border-radius:10px; !important; }
+        */
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            font-family: 'Lato', sans-serif;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+
+    {% block customstyles %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+<header>
+
+    <nav>
+        <div class="nav-wrapper green lighten-1">
+            <a href="/" class="brand-logo center">
+                <img alt="LOGO" class="responsive-img circle"
+                     src="{% static 'images/logo.png' %}" width="60px"/></a>
+            <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+            <ul class="left hide-on-med-and-down">
+                {% block nav-links %}
+
+                {% endblock %}
+            </ul>
+
+            <ul class="right hide-on-med-and-down">
+                {% if request.user.is_authenticated %}
+                    <li><a class="grey-text text-lighten-3" href="{% url 'main:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a class="grey-text text-lighten-3" href="{% url 'main:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile">
+        {% block nav-links-mobile %}
+
+        {% endblock %}
+
+        {% if request.user.is_authenticated %}
+            <li><a class="black-text" href="{% url 'main:logout' %}">Logout</a></li>
+        {% else %}
+            <li><a class="black-text" href="{% url 'main:login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+
+</header>
+
+
+<main>
+    <br>
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</main>
+
+
+<footer class="page-footer green lighten-1">
+    <div class="container">
+        <div class="row">
+            <div class="col s4">
+                <h5 class="white-text">FoodSplash</h5>
+                <p class="white-text text-lighten-4">
+                    FoodSplash
+                </p>
+            </div>
+            <div class="col s4">
+                <h5 class="white-text">Links</h5>
+                <ul>
+
+                    {% if request.user.is_authenticated %}
+                        <li><a class="white-text text-lighten-3" href="{% url 'main:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="white-text text-lighten-3" href="{% url 'main:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="col s4">
+                <h5 class="white-text">Resources</h5>
+                <ul>
+                    <!--<li><a class="white-text" href="#">{Link}</a></li>-->
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container white-text">
+            © 2018 FoodSplash
+            <div class="right">
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+{% if toast %}
+    <script>
+        M.toast({html: "{{ toast.msg }}", classes: "{{ toast.cls }}"});
+    </script>
+{% endif %}
+
+<script>
+    $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+</script>
+
+<!-- Custom Scripts -->
+{% block customscripts %}
+
+{% endblock %}
+
+</body>
+</html>

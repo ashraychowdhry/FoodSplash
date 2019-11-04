@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | FoodSplash{% endblock %}
+
+{# comment out for default #}
+{% block extrastyle %}
+    <style>
+
+        #header {
+            background-color: #009688;
+        }
+
+        .breadcrumbs {
+           background-color: #009688  !important;
+           border-bottom: solid 3px #fff;
+        }
+
+        #branding h1 {
+            color: #fff;
+        }
+
+        .module h2, .module caption, .inline-group h2 {
+            background: #66bb6a;
+            color: #fff;
+        }
+
+        a.section:link, a.section:visited, a.section:hover {
+            color: #fff;
+        }
+
+        input[type=submit] {
+            background-color: #009688;
+            color: #fff;
+        }
+
+        input[type=submit]:hover {
+            background-color: #004235;
+            color: #fff;
+        }
+
+    </style>
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">FoodSplash</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

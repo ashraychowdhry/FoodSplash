@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+    <br><br><br>
+
+    <div class="row">
+        <div class="col s2"></div>
+
+        <div class="card-panel col s8 z-depth-2 ">
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <h2>Login</h2><br>
+
+                {% if continue %}
+                    <h5 class="green-text">
+                        Sign in to continue to {{ continue }}
+                    </h5>
+                {% endif %}
+
+                {% if error %}
+                    <div class="card-panel col s12 red left white-text flow-text">
+                        <br>Invalid Login. Contact an admin for password resets. <br><br>
+                    </div>
+                    <br><br><br><br><br><br>
+                {% endif %}
+
+                <div class="input-field ">
+                    <i class="material-icons prefix">email</i>
+                    <input id="username" type="text" class="validate" name="username" required>
+                    <label for="username">Email</label>
+                </div>
+
+                <div class="input-field ">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="password" type="password" class="validate" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+
+                {% if error %}
+                    <div class="grey-text">
+                        Please email us for any password resets; auto password reset coming soon.
+                    </div>
+                {% endif %}
+
+                <div class="input-field right">
+                    <button id="submit" type="submit" class="waves-effect waves-light btn hoverable">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
