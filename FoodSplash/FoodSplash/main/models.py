@@ -40,13 +40,13 @@ class DropSite(models.Model):
 
 class Donation(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
-    drop_site = models.ForeignKey(DropSite)
+    drop_site = models.ForeignKey(DropSite, on_delete=models.CASCADE)
     fs_user = models.ForeignKey(FSUser, on_delete=models.CASCADE)
     points = models.IntegerField(default=1)
 
 
 class Promise(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
-    drop_site = models.ForeignKey(DropSite)
+    drop_site = models.ForeignKey(DropSite, on_delete=models.CASCADE)
     fs_user = models.ForeignKey(FSUser, on_delete=models.CASCADE)
 
