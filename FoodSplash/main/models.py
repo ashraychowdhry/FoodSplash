@@ -21,6 +21,7 @@ class Address(models.Model):
 
 
 class FSUser(models.Model):
+    #added on_delete field
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)
@@ -30,6 +31,7 @@ class FSUser(models.Model):
 
 
 class DropSite(models.Model):
+    #added on_delete field
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     notes = models.TextField(null=True)
     email = models.EmailField()
@@ -40,6 +42,7 @@ class DropSite(models.Model):
 
 class Donation(models.Model):
     timestamp = models.DateTimeField(auto_now=True)
+    #added on_delete field
     drop_site = models.ForeignKey(DropSite, on_delete=models.CASCADE)
     fs_user = models.ForeignKey(FSUser, on_delete=models.CASCADE)
     points = models.IntegerField(default=1)
